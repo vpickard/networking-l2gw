@@ -14,6 +14,9 @@ set +o xtrace
 
 function install_l2gw {
    setup_develop $L2GW_DIR
+   Q_PLUGIN_CONF_PATH=etc/neutron/plugins/ml2
+   Q_PLUGIN_CONF_FILENAME=ml2_conf.ini
+   Q_PLUGIN_CONF_FILE=$Q_PLUGIN_CONF_FILE/$Q_PLUGIN_CONF_FILENAME
 }
 
 function configure_agent_conf {
