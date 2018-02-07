@@ -50,11 +50,10 @@ if is_service_enabled l2gw-plugin; then
         :
     elif [[ "$1" == "stack" && "$2" == "install" ]]; then
         install_l2gw
-    elif [[ "$1" == "stack" && "$2" == "pre-install" ]]; then
-        _neutron_service_plugin_class_add $L2GW_PLUGIN
     elif [[ "$1" == "stack" && "$2" == "test-config" ]]; then
         configure_tempest_for_l2gw
     elif [[ "$1" == "stack" && "$2" == "post-config" ]]; then
+        _neutron_service_plugin_class_add $L2GW_PLUGIN
         configure_l2gw_plugin
         run_l2gw_alembic_migration
         if is_service_enabled q-svc; then
