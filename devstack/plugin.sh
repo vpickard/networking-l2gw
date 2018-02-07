@@ -26,6 +26,7 @@ function start_l2gw_agent {
 }
 
 function run_l2gw_alembic_migration {
+   echo "Running neutron-db-manage with NEUTRON_CONF: $NEUTRON_CONF and Q_PLUGIN: $Q_PLUGIN_CONF_FILE networking-l2gw"
    $NEUTRON_BIN_DIR/neutron-db-manage --config-file $NEUTRON_CONF --config-file /$Q_PLUGIN_CONF_FILE upgrade head
 }
 
