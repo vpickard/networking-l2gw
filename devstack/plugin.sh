@@ -60,11 +60,15 @@ if is_service_enabled l2gw-plugin; then
         neutron_service_plugin_class_add $L2GW_PLUGIN
         configure_l2gw_plugin
         run_l2gw_alembic_migration
-        if [ is_service_enabled neutron-api ] || [ is_service_enabled q-svc ]; then
+        if is_service_enabled q-svc; then
             echo_summary "Configuring networking-l2gw"
+            echo "Configuring networking-l2gw. NETWORKING_L2W_SERVICE_DRIVER: $NETWORKING_L2GW_SERVICE_DRIVER"
             if [ "$NETWORKING_L2GW_SERVICE_DRIVER" ]; then
+                echo "Adding L2GW Service Driver to L2GW_PLUGIN_CONF_FILE: $L2GW_PLUGIN_CONF_FILE"
                 inicomment $L2GW_PLUGIN_CONF_FILE service_providers service_provider
                 iniadd $L2GW_PLUGIN_CONF_FILE service_providers service_provider $NETWORKING_L2GW_SERVICE_DRIVER
+                echo "L2GW PLUGIN CONF FILE contents: "
+                cat $L2GW_PLUGIN_CONF_FILE
             fi
         fi
     elif [[ "$1" == "stack" && "$2" == "post-extra" ]]; then
