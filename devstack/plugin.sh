@@ -63,7 +63,7 @@ if is_service_enabled l2gw-plugin; then
         echo "Checking neutron-api service"
         if is_service_enabled neutron-api; then
             echo "neutron-api is enabled"
-        if
+        fi
         if is_service_enabled q-svc; then
             echo "q-svc is enabled"
         fi
