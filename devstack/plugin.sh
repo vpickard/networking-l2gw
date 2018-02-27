@@ -67,7 +67,7 @@ if is_service_enabled l2gw-plugin; then
         if is_service_enabled q-svc; then
             echo "q-svc is enabled"
         fi
-        if [ is_service_enabled neutron-api ] || [ is_service_enabled q-svc ]; then
+        if [[ is_service_enabled neutron-api ]] || [[ is_service_enabled q-svc ]]; then
             echo_summary "Configuring networking-l2gw"
             echo "Configuring networking-l2gw. NETWORKING_L2W_SERVICE_DRIVER: $NETWORKING_L2GW_SERVICE_DRIVER"
             if [ "$NETWORKING_L2GW_SERVICE_DRIVER" ]; then
